@@ -1,0 +1,25 @@
+author: mongoose-os
+description: Core meta-lib
+type: lib
+version: 1.0
+
+sources:
+  - src
+  - src/${platform}
+
+includes:
+  - include
+  - include/${platform}
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/mongoose
+
+init_after:
+  - ota-common
+  - vfs-*
+
+tags:
+  - c
+  - core
+
+manifest_version: 2018-06-12
