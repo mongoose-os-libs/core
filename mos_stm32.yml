@@ -1,2 +1,6 @@
 libs:
   - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+
+cdefs:
+  # Miniz is hungry for stack.
+  MGOS_TASK_STACK_SIZE_BYTES: 16384
