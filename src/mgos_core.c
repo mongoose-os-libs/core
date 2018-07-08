@@ -15,6 +15,14 @@
  * limitations under the License.
  */
 
+/* This is located at the top because once stdbool is included, "true" is
+ * stringized to "1". */
+#ifdef MGOS_ROOT_DEVTAB
+#define STRINGIZE_LIT(...) #__VA_ARGS__
+#define STRINGIZE(x) STRINGIZE_LIT(x)
+static const char *dt = STRINGIZE(MGOS_ROOT_DEVTAB);
+#endif
+
 #include "mgos.h"
 
 #ifdef MGOS_HAVE_OTA_COMMON
@@ -33,6 +41,12 @@ extern int mg_ssl_if_mbed_random(void *ctx, unsigned char *buf, size_t len);
 extern bool mgos_core_fs_init(void);  // Provided by vfs-common
 
 bool mgos_core_init(void) {
+#ifdef MGOS_ROOT_DEVTAB
+  if (!mgos_process_devtab(dt)) {
+    LOG(LL_ERROR, ("Root devtab init error"));
+    return false;
+  }
+#endif
   if (!mgos_core_fs_init()) {
     LOG(LL_ERROR, ("FS init error"));
     return false;

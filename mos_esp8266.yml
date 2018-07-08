@@ -1,2 +1,3 @@
 libs:
+  - origin: https://github.com/mongoose-os-libs/vfs-dev-part
   - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
