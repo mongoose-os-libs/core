@@ -4,3 +4,15 @@ libs:
 cdefs:
   # Miniz is hungry for stack.
   MGOS_TASK_STACK_SIZE_BYTES: 16384
+
+conds:
+  - when: build_vars.BOARD == "DISCO-F746NG"
+    apply:
+      config_schema:
+        - ["debug.stdout_uart", 1]
+        - ["debug.stderr_uart", 1]
+  - when: build_vars.BOARD == "NUCLEO-F746ZG"
+    apply:
+      config_schema:
+        - ["debug.stdout_uart", 3]
+        - ["debug.stderr_uart", 3]
