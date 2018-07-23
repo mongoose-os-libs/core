@@ -25,6 +25,9 @@ static const char *dt = STRINGIZE(MGOS_ROOT_DEVTAB);
 
 #include "mgos.h"
 
+#ifdef MGOS_HAVE_BOOTLOADER
+#include "mgos_boot_cfg.h"
+#endif
 #ifdef MGOS_HAVE_OTA_COMMON
 #include "mgos_updater_common.h"
 #endif
@@ -45,6 +48,11 @@ bool mgos_core_init(void) {
   if (!mgos_process_devtab(dt)) {
     LOG(LL_ERROR, ("Root devtab init error"));
     return false;
+  }
+#endif
+#ifdef MGOS_HAVE_BOOTLOADER
+  if (!mgos_boot_cfg_init()) {
+    LOG(LL_WARN, ("Failed to init boot cfg, OTA not supported."));
   }
 #endif
   if (!mgos_core_fs_init()) {

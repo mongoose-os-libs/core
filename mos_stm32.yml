@@ -1,4 +1,5 @@
 libs:
+  - origin: https://github.com/mongoose-os-libs/bootloader
   - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
 
 cdefs:
