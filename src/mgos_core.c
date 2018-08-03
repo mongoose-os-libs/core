@@ -46,7 +46,7 @@ extern bool mgos_core_fs_init(void);  // Provided by vfs-common
 bool mgos_core_init(void) {
 #ifdef MGOS_ROOT_DEVTAB
   if (!mgos_process_devtab(dt)) {
-    LOG(LL_ERROR, ("Root devtab init error"));
+    LOG(LL_ERROR, ("%s init failed", "Root devtab"));
     return false;
   }
 #endif
@@ -56,7 +56,7 @@ bool mgos_core_init(void) {
   }
 #endif
   if (!mgos_core_fs_init()) {
-    LOG(LL_ERROR, ("FS init error"));
+    LOG(LL_ERROR, ("%s init failed", "FS"));
     return false;
   }
 #ifdef MGOS_HAVE_OTA_COMMON
@@ -75,13 +75,22 @@ bool mgos_core_init(void) {
   mgos_uptime_init();
 
   r = mgos_net_init();
-  if (r != MGOS_INIT_OK) return false;
+  if (r != MGOS_INIT_OK) {
+    LOG(LL_ERROR, ("%s init failed", "net"));
+    return false;
+  }
 
   r = mgos_gpio_init();
-  if (r != MGOS_INIT_OK) return false;
+  if (r != MGOS_INIT_OK) {
+    LOG(LL_ERROR, ("%s init failed", "gpio"));
+    return false;
+  }
 
   r = mgos_sys_config_init();
-  if (r != MGOS_INIT_OK) return false;
+  if (r != MGOS_INIT_OK) {
+    LOG(LL_ERROR, ("%s init failed", "sys config"));
+    return false;
+  }
 
 #ifdef _NEWLIB_VERSION
   {

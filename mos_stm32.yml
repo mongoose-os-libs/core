@@ -7,6 +7,11 @@ cdefs:
   MGOS_TASK_STACK_SIZE_BYTES: 16384
 
 conds:
+  - when: build_vars.BOARD == "B-L475E-IOT01A"
+    apply:
+      config_schema:
+        - ["debug.stdout_uart", 1]
+        - ["debug.stderr_uart", 1]
   - when: build_vars.BOARD == "DISCO-F746NG"
     apply:
       config_schema:
