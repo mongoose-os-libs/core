@@ -43,13 +43,19 @@ extern int mg_ssl_if_mbed_random(void *ctx, unsigned char *buf, size_t len);
 
 extern bool mgos_core_fs_init(void);  // Provided by vfs-common
 
-bool mgos_core_init(void) {
+bool mgos_root_devtab_init(void) {
 #ifdef MGOS_ROOT_DEVTAB
-  if (!mgos_process_devtab(dt)) {
+  return mgos_process_devtab(dt);
+#else
+  return true;
+#endif
+}
+
+bool mgos_core_init(void) {
+  if (!mgos_root_devtab_init()) {
     LOG(LL_ERROR, ("%s init failed", "Root devtab"));
     return false;
   }
-#endif
 #ifdef MGOS_HAVE_BOOTLOADER
   if (!mgos_boot_cfg_init()) {
     LOG(LL_WARN, ("Failed to init boot cfg, OTA not supported."));
