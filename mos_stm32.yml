@@ -36,7 +36,7 @@ conds:
           fs1    part {"dev": "extf0e", "offset": 0x242000, "size": 0x40000} |
           data   part {"dev": "extf0e", "offset": 0x280000}
         MGOS_ROOT_FS_TYPE: LFS
-        MGOS_ROOT_FS_SIZE: 0x20000
+        MGOS_ROOT_FS_SIZE: 0x40000
         MGOS_ROOT_FS_EXTRACT: 1
         MGOS_ROOT_FS_ON_SYS_FLASH: 0
       cdefs:
@@ -69,7 +69,7 @@ conds:
           fs1    part {"dev": "extf0e", "offset": 0x242000, "size": 0x40000} |
           data   part {"dev": "extf0e", "offset": 0x280000}
         MGOS_ROOT_FS_TYPE: LFS
-        MGOS_ROOT_FS_SIZE: 0x20000
+        MGOS_ROOT_FS_SIZE: 0x40000
         MGOS_ROOT_FS_EXTRACT: 1
         MGOS_ROOT_FS_ON_SYS_FLASH: 0
       cdefs:
