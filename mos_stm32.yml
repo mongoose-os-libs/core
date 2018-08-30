@@ -15,7 +15,7 @@ conds:
   - when: build_vars.BOARD == "B-L475E-IOT01A"
     apply:
       build_vars:
-        MGOS_BL_BIN: "/mongoose-os/fw/platforms/stm32/bin/bootloader_b-l475e-iot01a.bin"
+        MGOS_BL_BIN: "$(MGOS_PLATFORM_PATH)/bin/bootloader_b-l475e-iot01a.bin"
         MGOS_DEBUG_UART: 1
         FLASH_BL_SIZE: 32768
         FLASH_BL_CFG_SIZE: 0
@@ -48,7 +48,7 @@ conds:
   - when: build_vars.BOARD == "DISCO-F746NG"
     apply:
       build_vars:
-        MGOS_BL_BIN: "/mongoose-os/fw/platforms/stm32/bin/bootloader_disco-f746.bin"
+        MGOS_BL_BIN: "$(MGOS_PLATFORM_PATH)/bin/bootloader_disco-f746.bin"
         MGOS_DEBUG_UART: 1
         FLASH_BL_SIZE: 32768
         FLASH_BL_CFG_SIZE: 0
