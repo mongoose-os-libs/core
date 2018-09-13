@@ -21,5 +21,6 @@ init_after:
 tags:
   - c
   - core
+  - docs:core:Core meta-library
 
 manifest_version: 2018-06-12
