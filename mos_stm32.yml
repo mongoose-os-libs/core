@@ -17,30 +17,33 @@ conds:
       build_vars:
         MGOS_BL_BIN: "$(MGOS_PLATFORM_PATH)/bin/bootloader_b-l475e-iot01a.bin"
         MGOS_DEBUG_UART: 1
-        FLASH_BL_SIZE: 32768
+        FLASH_BL_SIZE: 0x10000
         FLASH_BL_CFG_SIZE: 0
         MGOS_ROOT_DEVTAB: >
           sysf0   stm32flash {} |
-          extf0   spi_flash  {"cs": 0, "freq": 8000000,
+          extf0   spi_flash  {"cs": 0, "freq": 20000000,
                               "spi": {"unit_no": 128,
                                       "mosi_gpio": 0xa004c, "miso_gpio": 0xa004d, "sclk_gpio": 0xa004a,
                                       "cs0_gpio": 0x4b, "qspi_io2": 0xa004e, "qspi_io3": 0xa004f}} |
           extf0e  encr {"dev": "extf0", "key_dev_type": "RAM", "algo": "AES-128",
                         "key_dev_opts": {"addr": 0x1fff7000, "size": 16}} |
-          app0   part {"dev": "sysf0",  "offset":   0x8000, "size": 0xf8000} |
-          bcfg0  part {"dev": "extf0e", "offset":        0, "size": 0x1000} |
-          bcfg1  part {"dev": "extf0e", "offset":   0x1000, "size": 0x1000} |
-          app1   part {"dev": "extf0e", "offset":   0x2000, "size": 0x100000} |
-          app2   part {"dev": "extf0e", "offset": 0x102000, "size": 0x100000} |
-          fs0    part {"dev": "extf0e", "offset": 0x202000, "size": 0x40000} |
-          fs1    part {"dev": "extf0e", "offset": 0x242000, "size": 0x40000} |
-          data   part {"dev": "extf0e", "offset": 0x280000}
+          app0   part {"dev": "sysf0",  "offset":  0x10000, "size": 0xf0000} |
+          bcfg0  part {"dev": "extf0e", "offset":        0, "size":  0x1000} |
+          bcfg1  part {"dev": "extf0e", "offset":   0x1000, "size":  0x1000} |
+          # Reserved: 56K |
+          app1   part {"dev": "extf0e", "offset":  0x10000, "size": 0x100000} |
+          appT   part {"dev": "extf0e", "offset": 0x110000, "size": 0x100000} |
+          appF   part {"dev": "extf0e", "offset": 0x210000, "size": 0x100000} |
+          fs0    part {"dev": "extf0e", "offset": 0x310000, "size": 0x40000} |
+          fs1    part {"dev": "extf0e", "offset": 0x350000, "size": 0x40000} |
+          fsF    part {"dev": "extf0e", "offset": 0x390000, "size": 0x40000} |
+          data   part {"dev": "extf0e", "offset": 0x3d0000}
         MGOS_ROOT_FS_TYPE: LFS
         MGOS_ROOT_FS_SIZE: 0x40000
         MGOS_ROOT_FS_EXTRACT: 1
         MGOS_ROOT_FS_ON_SYS_FLASH: 0
       cdefs:
-        MGOS_BOOT_APP0_OFFSET: 0x8000
+        MGOS_BOOT_APP0_OFFSET: 0x10000
       config_schema:
         - ["debug.stdout_uart", 1]
         - ["debug.stderr_uart", 1]
@@ -50,30 +53,33 @@ conds:
       build_vars:
         MGOS_BL_BIN: "$(MGOS_PLATFORM_PATH)/bin/bootloader_disco-f746.bin"
         MGOS_DEBUG_UART: 1
-        FLASH_BL_SIZE: 32768
+        FLASH_BL_SIZE: 0x10000
         FLASH_BL_CFG_SIZE: 0
         MGOS_ROOT_DEVTAB: >
           sysf0  stm32flash {} |
-          extf0  spi_flash  {"cs": 0, "freq": 8000000,
+          extf0  spi_flash  {"cs": 0, "freq": 20000000,
                              "spi": {"unit_no": 128,
                                      "mosi_gpio": 0x9003b, "miso_gpio": 0x9003c, "sclk_gpio": 0x90012,
                                      "cs0_gpio": 0x16, "qspi_io2": 0x90042, "qspi_io3": 0x9003d}} |
           extf0e encr {"dev": "extf0", "key_dev_type": "RAM", "algo": "AES-128",
                        "key_dev_opts": {"addr": 0x1ff0f000, "size": 16}} |
-          app0   part {"dev": "sysf0",  "offset":   0x8000, "size": 0xf8000} |
-          bcfg0  part {"dev": "extf0e", "offset":        0, "size": 0x1000} |
-          bcfg1  part {"dev": "extf0e", "offset":   0x1000, "size": 0x1000} |
-          app1   part {"dev": "extf0e", "offset":   0x2000, "size": 0x100000} |
-          app2   part {"dev": "extf0e", "offset": 0x102000, "size": 0x100000} |
-          fs0    part {"dev": "extf0e", "offset": 0x202000, "size": 0x40000} |
-          fs1    part {"dev": "extf0e", "offset": 0x242000, "size": 0x40000} |
-          data   part {"dev": "extf0e", "offset": 0x280000}
+          app0   part {"dev": "sysf0",  "offset":  0x10000, "size": 0xf0000} |
+          bcfg0  part {"dev": "extf0e", "offset":        0, "size":  0x1000} |
+          bcfg1  part {"dev": "extf0e", "offset":   0x1000, "size":  0x1000} |
+          # Reserved: 56K |
+          app1   part {"dev": "extf0e", "offset":  0x10000, "size": 0x100000} |
+          appT   part {"dev": "extf0e", "offset": 0x110000, "size": 0x100000} |
+          appF   part {"dev": "extf0e", "offset": 0x210000, "size": 0x100000} |
+          fs0    part {"dev": "extf0e", "offset": 0x310000, "size": 0x40000} |
+          fs1    part {"dev": "extf0e", "offset": 0x350000, "size": 0x40000} |
+          fsF    part {"dev": "extf0e", "offset": 0x390000, "size": 0x40000} |
+          data   part {"dev": "extf0e", "offset": 0x3d0000}
         MGOS_ROOT_FS_TYPE: LFS
         MGOS_ROOT_FS_SIZE: 0x40000
         MGOS_ROOT_FS_EXTRACT: 1
         MGOS_ROOT_FS_ON_SYS_FLASH: 0
       cdefs:
-        MGOS_BOOT_APP0_OFFSET: 0x8000
+        MGOS_BOOT_APP0_OFFSET: 0x10000
       config_schema:
         - ["debug.stdout_uart", 1]
         - ["debug.stderr_uart", 1]
