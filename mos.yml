@@ -23,4 +23,21 @@ tags:
   - core
   - docs:core:Core meta-library
 
+conds:
+  # FreeRTOS option to enable statically allocated task stacks.
+  - when: mos.platform == "stm32"
+    apply:
+      cdefs:
+        configSUPPORT_STATIC_ALLOCATION: 1
+  - when: mos.platform == "cc3220"
+    apply:
+      cdefs:
+        configSUPPORT_STATIC_ALLOCATION: 1
+  - when: mos.platform == "esp32"
+    apply:
+      build_vars:
+        ESP_IDF_SDKCONFIG_OPTS: >
+          ${build_vars.ESP_IDF_SDKCONFIG_OPTS}
+          CONFIG_SUPPORT_STATIC_ALLOCATION=1
+
 manifest_version: 2018-06-12
