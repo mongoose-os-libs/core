@@ -29,7 +29,7 @@ static const char *dt = STRINGIZE(MGOS_ROOT_DEVTAB);
 #include "mgos_boot_cfg.h"
 #endif
 #ifdef MGOS_HAVE_OTA_COMMON
-#include "mgos_updater_common.h"
+#include "mgos_updater.h"
 #endif
 #include "mgos_vfs_internal.h"
 
