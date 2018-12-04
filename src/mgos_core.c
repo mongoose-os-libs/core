@@ -29,7 +29,7 @@ static const char *dt = STRINGIZE(MGOS_ROOT_DEVTAB);
 #include "mgos_boot_cfg.h"
 #endif
 #ifdef MGOS_HAVE_OTA_COMMON
-#include "mgos_updater.h"
+#include "mgos_ota.h"
 #endif
 #include "mgos_vfs_internal.h"
 
@@ -66,7 +66,7 @@ bool mgos_core_init(void) {
     return false;
   }
 #ifdef MGOS_HAVE_OTA_COMMON
-  if (mgos_upd_is_first_boot() && mgos_upd_apply_update() < 0) {
+  if (mgos_ota_is_first_boot() && mgos_ota_apply_update() < 0) {
     LOG(LL_ERROR, ("Failed to apply update"));
     return false;
   }
