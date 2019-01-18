@@ -37,7 +37,6 @@ static const char *dt = STRINGIZE(MGOS_ROOT_DEVTAB);
 #include "mgos_gpio_internal.h"
 #include "mgos_net_internal.h"
 #include "mgos_sys_config_internal.h"
-#include "mgos_time_internal.h"
 
 extern int mg_ssl_if_mbed_random(void *ctx, unsigned char *buf, size_t len);
 
@@ -78,7 +77,6 @@ bool mgos_core_init(void) {
   srand(seed);
 
   mgos_event_register_base(MGOS_EVENT_SYS, "mos");
-  mgos_uptime_init();
 
   r = mgos_net_init();
   if (r != MGOS_INIT_OK) {
