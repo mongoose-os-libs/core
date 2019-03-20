@@ -23,21 +23,51 @@ tags:
   - core
   - docs:core:Core meta-library
 
+config_schema:
+  - ["device", "o", {title: "Device settings"}]
+  - ["device.id", "s", {title: "Device ID"}]  # Note: Each arch defines a default
+  - ["device.license", "s", {title: "License code"}]
+
+  - ["debug", "o", {title: "Debug Settings"}]
+  - ["debug.level", "i", 2, {title: "Debug Level"}]
+  - ["debug.file_level", "s", "", {title: "Log file level specification: file=level,file=level,...; see cs_log_set_file_level()"}]
+  - ["debug.stdout_uart", "i", 0, {title: "STDOUT UART (-1 to disable)"}]
+  - ["debug.stderr_uart", "i", 0, {title: "STDERR UART (-1 to disable)"}]
+  - ["debug.factory_reset_gpio", "i", -1, {title: "Factory reset GPIO (low on boot)"}]
+  - ["debug.mg_mgr_hexdump_file", "s", {title: "File name to hexdump network traffic to. Use '-' for stdout, '--' for stderr."}]
+
+  - ["sys", "o", {title: "System settings"}]
+  # https://users.pja.edu.pl/~jms/qnx/help/watcom/clibref/global_data.html
+  # https://github.com/G6EJD/ESP32-Time-Services-and-SETENV-variable/blob/master/ESP32_Time_and_SETENV.ino
+  # Example: EST5EDT4,M4.1.0/02:00:00,M10.5.0/02:00:00
+  # Eastern Standard Time is 5 hours earlier than Coordinated Universal Time (UTC).
+  # Standard time and daylight savings time both apply to this locale.
+  # Eastern Daylight Time (EDT) is one hour ahead of standard time.
+  # Daylight saving time starts on the first (1) Sunday (0) of April (4) at 2:00 A.M., and ends on the last (5) Sunday (0) of October (10) at 2:00 A.M.
+  - ["sys.tz_spec", "s", "", {title: "See formats for the TZ env var: \"man tzset\". Formats like \":/path/to/file\" are not supported"}]
+
+  - ["sys.wdt_timeout", "i", 30, {title: "Watchdog timeout (seconds)"}]
+  - ["sys.pref_ota_lib", "s", {title: "Preferred ota lib, e.g. dash, ota-http-client"}]
+
+  - ["conf_acl", "s", "*", {title: "Conf ACL"}]
+
 conds:
   # FreeRTOS option to enable statically allocated task stacks.
-  - when: mos.platform == "stm32"
-    apply:
-      cdefs:
-        configSUPPORT_STATIC_ALLOCATION: 1
-  - when: mos.platform == "cc3220"
-    apply:
-      cdefs:
-        configSUPPORT_STATIC_ALLOCATION: 1
   - when: mos.platform == "esp32"
     apply:
       build_vars:
         ESP_IDF_SDKCONFIG_OPTS: >
           ${build_vars.ESP_IDF_SDKCONFIG_OPTS}
           CONFIG_SUPPORT_STATIC_ALLOCATION=y
+  - when: mos.platform == "rs14100"
+    apply:
+      conf_schema:
+        - ["device.id", "rs14100_??????"]
+        - ["debug.stdout_uart", 1]
+        - ["debug.stderr_uart", 1]
+  - when: mos.platform == "stm32"
+    apply:
+      conf_schema:
+        - ["device.id", "stm32_??????"]
 
 manifest_version: 2018-06-12
