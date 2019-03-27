@@ -1,3 +1,0 @@
-libs:
-  - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
-  - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs

@@ -52,22 +52,40 @@ config_schema:
   - ["conf_acl", "s", "*", {title: "Conf ACL"}]
 
 conds:
-  # FreeRTOS option to enable statically allocated task stacks.
   - when: mos.platform == "esp32"
     apply:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       build_vars:
+        # FreeRTOS option to enable statically allocated task stacks.
         ESP_IDF_SDKCONFIG_OPTS: >
           ${build_vars.ESP_IDF_SDKCONFIG_OPTS}
           CONFIG_SUPPORT_STATIC_ALLOCATION=y
+
+  - when: mos.platform == "esp8266"
+    apply:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/vfs-dev-part
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+      config_schema:
+        - ["device.id", "esp8266_??????"]
+
   - when: mos.platform == "rs14100"
     apply:
-      conf_schema:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/vfs-dev-part
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+      config_schema:
         - ["device.id", "rs14100_??????"]
         - ["debug.stdout_uart", 1]
         - ["debug.stderr_uart", 1]
+        - ["rpc.uart.uart_no", 1]
+
   - when: mos.platform == "stm32"
     apply:
-      conf_schema:
+      config_schema:
         - ["device.id", "stm32_??????"]
 
 manifest_version: 2018-06-12
