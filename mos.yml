@@ -52,9 +52,26 @@ config_schema:
   - ["conf_acl", "s", "*", {title: "Conf ACL"}]
 
 conds:
+  - when: mos.platform == "cc3200"
+    apply:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/freertos
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+      build_vars:
+        FREERTOS_PORT: CCS/ARM_CM3
+
+  - when: mos.platform == "cc3220"
+    apply:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/freertos
+        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+      build_vars:
+        FREERTOS_PORT: CCS/ARM_CM3
+
   - when: mos.platform == "esp32"
     apply:
       libs:
+        - origin: https://github.com/mongoose-os-libs/freertos
         - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
         - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       build_vars:
@@ -74,6 +91,7 @@ conds:
   - when: mos.platform == "rs14100"
     apply:
       libs:
+        - origin: https://github.com/mongoose-os-libs/freertos
         - origin: https://github.com/mongoose-os-libs/vfs-dev-part
         - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
         - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
@@ -82,9 +100,13 @@ conds:
         - ["debug.stdout_uart", 1]
         - ["debug.stderr_uart", 1]
         - ["rpc.uart.uart_no", 1]
+      build_vars:
+        FREERTOS_PORT: GCC/ARM_CM4F
 
   - when: mos.platform == "stm32"
     apply:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/freertos
       config_schema:
         - ["device.id", "stm32_??????"]
 
