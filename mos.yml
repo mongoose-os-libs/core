@@ -15,6 +15,7 @@ libs:
   - origin: https://github.com/mongoose-os-libs/mongoose
 
 init_after:
+  - lwip
   - ota-common
   - vfs-*
 
