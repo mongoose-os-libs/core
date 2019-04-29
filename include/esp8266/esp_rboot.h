@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "common/platforms/esp8266/esp_missing_includes.h"
-#include "common/platforms/esp8266/rboot/rboot/appcode/rboot-api.h"
+#include "esp_missing_includes.h"
+#include "platforms/esp8266/rboot/rboot/appcode/rboot-api.h"
 
 #ifdef __cplusplus
 extern "C" {
