@@ -29,6 +29,7 @@ config_schema:
   - ["device.id", "s", {title: "Device ID"}]  # Note: Each arch defines a default
   - ["device.license", "s", {title: "License code"}]
   - ["device.mac", "s", "", {title: "user/custom defined mac address"}]
+  - ["device.public_key", "s", "", {title: "Key for the restricted access"}]
 
   - ["debug", "o", {title: "Debug Settings"}]
   - ["debug.level", "i", 2, {title: "Debug Level"}]
