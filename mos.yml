@@ -30,6 +30,7 @@ config_schema:
   - ["device.license", "s", {title: "License code"}]
   - ["device.mac", "s", "", {title: "user/custom defined mac address"}]
   - ["device.public_key", "s", "", {title: "Key for the restricted access"}]
+  - ["device.sn", "s", "", {title: "Serial number"}]
 
   - ["debug", "o", {title: "Debug Settings"}]
   - ["debug.level", "i", 2, {title: "Debug Level"}]
