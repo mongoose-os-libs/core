@@ -35,6 +35,7 @@ config_schema:
   - ["debug", "o", {title: "Debug Settings"}]
   - ["debug.level", "i", 2, {title: "Debug Level"}]
   - ["debug.file_level", "s", "", {title: "Log file level specification: file=level,file=level,...; see cs_log_set_file_level()"}]
+  - ["debug.event_level", "i", 2, {title: "Max level for which a MGOS_EVENT_LOG is raised"}]
   - ["debug.stdout_uart", "i", 0, {title: "STDOUT UART (-1 to disable)"}]
   - ["debug.stderr_uart", "i", 0, {title: "STDERR UART (-1 to disable)"}]
   - ["debug.factory_reset_gpio", "i", -1, {title: "Factory reset GPIO (low on boot)"}]
