@@ -116,4 +116,9 @@ conds:
       config_schema:
         - ["device.id", "stm32_??????"]
 
+  - when: mos.platform == "ubuntu"
+    apply:
+      libs:
+        - origin: https://github.com/mongoose-os-libs/ethernet
+
 manifest_version: 2018-06-12
