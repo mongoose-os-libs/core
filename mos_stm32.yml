@@ -1,11 +1,11 @@
 libs:
-  - origin: https://github.com/mongoose-os-libs/bootloader
-  - origin: https://github.com/mongoose-os-libs/vfs-dev-encr
-  - origin: https://github.com/mongoose-os-libs/vfs-dev-part
-  - origin: https://github.com/mongoose-os-libs/vfs-dev-ram
-  - origin: https://github.com/mongoose-os-libs/vfs-dev-spi-flash
-  - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
-  - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+  - location: https://github.com/mongoose-os-libs/bootloader
+  - location: https://github.com/mongoose-os-libs/vfs-dev-encr
+  - location: https://github.com/mongoose-os-libs/vfs-dev-part
+  - location: https://github.com/mongoose-os-libs/vfs-dev-ram
+  - location: https://github.com/mongoose-os-libs/vfs-dev-spi-flash
+  - location: https://github.com/mongoose-os-libs/vfs-fs-lfs
+  - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
 
 cdefs:
   # Miniz is hungry for stack.

@@ -12,7 +12,7 @@ includes:
   - include/${platform}
 
 libs:
-  - origin: https://github.com/mongoose-os-libs/mongoose
+  - location: https://github.com/mongoose-os-libs/mongoose
 
 init_after:
   - lwip
@@ -60,25 +60,25 @@ conds:
   - when: mos.platform == "cc3200"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/freertos
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+        - location: https://github.com/mongoose-os-libs/freertos
+        - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       build_vars:
         FREERTOS_PORT: CCS/ARM_CM3
 
   - when: mos.platform == "cc3220"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/freertos
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+        - location: https://github.com/mongoose-os-libs/freertos
+        - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       build_vars:
         FREERTOS_PORT: CCS/ARM_CM3
 
   - when: mos.platform == "esp32"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/freertos
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+        - location: https://github.com/mongoose-os-libs/freertos
+        - location: https://github.com/mongoose-os-libs/vfs-fs-lfs
+        - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       build_vars:
         # FreeRTOS option to enable statically allocated task stacks.
         ESP_IDF_SDKCONFIG_OPTS: >
@@ -88,19 +88,19 @@ conds:
   - when: mos.platform == "esp8266"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/vfs-dev-part
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+        - location: https://github.com/mongoose-os-libs/vfs-dev-part
+        - location: https://github.com/mongoose-os-libs/vfs-fs-lfs
+        - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       config_schema:
         - ["device.id", "esp8266_??????"]
 
   - when: mos.platform == "rs14100"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/freertos
-        - origin: https://github.com/mongoose-os-libs/vfs-dev-part
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
-        - origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+        - location: https://github.com/mongoose-os-libs/freertos
+        - location: https://github.com/mongoose-os-libs/vfs-dev-part
+        - location: https://github.com/mongoose-os-libs/vfs-fs-lfs
+        - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       config_schema:
         - ["device.id", "rs14100_??????"]
         - ["debug.stdout_uart", 1]
@@ -112,13 +112,13 @@ conds:
   - when: mos.platform == "stm32"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/freertos
+        - location: https://github.com/mongoose-os-libs/freertos
       config_schema:
         - ["device.id", "stm32_??????"]
 
   - when: mos.platform == "ubuntu"
     apply:
       libs:
-        - origin: https://github.com/mongoose-os-libs/ethernet
+        - location: https://github.com/mongoose-os-libs/ethernet
 
 manifest_version: 2018-06-12
