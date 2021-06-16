@@ -56,6 +56,9 @@ config_schema:
 
   - ["conf_acl", "s", "*", {title: "Conf ACL"}]
 
+cdefs:
+  JSON_MAX_PATH_LEN: 128
+
 conds:
   - when: mos.platform == "cc3200"
     apply:
