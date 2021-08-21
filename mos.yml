@@ -58,6 +58,7 @@ config_schema:
 
 cdefs:
   JSON_MAX_PATH_LEN: 128
+  MGOS_DEFAULT_NAMESERVER: '\"8.8.8.8\"'
 
 conds:
   - when: mos.platform == "cc3200"
