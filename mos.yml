@@ -83,6 +83,8 @@ conds:
         - location: https://github.com/mongoose-os-libs/freertos
         - location: https://github.com/mongoose-os-libs/vfs-fs-lfs
         - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+      config_schema:
+        - ["device.id", "esp32_??????"]
       build_vars:
         # FreeRTOS option to enable statically allocated task stacks.
         ESP_IDF_SDKCONFIG_OPTS: >
