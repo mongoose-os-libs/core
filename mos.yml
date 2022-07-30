@@ -96,7 +96,6 @@ conds:
       libs:
         - location: https://github.com/mongoose-os-libs/freertos
         - location: https://github.com/mongoose-os-libs/vfs-fs-lfs
-        - location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
       config_schema:
         - ["device.id", "esp32c3_??????"]
       build_vars:
